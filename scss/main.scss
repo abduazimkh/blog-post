@@ -210,3 +210,36 @@ footer{
 }
 
 
+// .single-wrapper{
+
+// }
+
+.single-post-content{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin-top: 100px;
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1{
+            color: #FFF;
+            font-family: "Jomolhari",sans-serif;
+            font-size: 40px;
+            font-weight: 400;
+        }
+    }
+    img{
+        margin: 32px 0 96px 0;
+        display: inline-block;
+        height: 400px;
+    }
+    p{
+        max-width: 820px;
+        line-height: 24px;
+        align-self: center;    
+    }
+    margin-bottom: 150px;
+}
+
