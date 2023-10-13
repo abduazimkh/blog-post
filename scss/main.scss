@@ -7,6 +7,8 @@
 
 body{
     background-color: #000;
+    font-family: "Jomolhari", sans-serif;
+
 }
 
 header{
@@ -36,7 +38,6 @@ header{
         }
     }
 }
-
 
 main{
     padding-left: 80px;
@@ -100,7 +101,6 @@ main{
 
 footer{
     border-top: 1px solid #F5C147;
-
 }
 
 .footer__nav{
@@ -134,3 +134,79 @@ footer{
         color: #F5C147;
     } 
 }
+
+
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    form{
+        width: 300px;
+        padding: 25px 56px;
+        background-color: #F5C147;
+        display: flex;
+        gap: 20px;
+        border-radius: 56px;
+        flex-direction: column;
+        justify-content: center;
+        img{
+            width: 200px;
+            align-self: center;
+        }
+        h1{
+            text-align: center;
+            color: #000;
+            font-family: "Jomolhari", sans-serif;
+            font-size: 26px;
+            font-weight: 400;
+        }
+        .inp-div{
+            display: flex;
+            align-items: center;
+            border: 3px solid #000;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+        input{
+            padding: 14px 0;
+            text-indent: 22px;
+            border-radius: 17px;
+            outline: none;
+            font-size: 18px;
+            border: 3px solid #000;
+
+        }
+        #btn-password{
+            border: none;
+            flex: 1;
+        }
+        button{
+            width: 160px;
+            padding: 14px;
+            border-radius: 22px;
+            align-self: center;
+            background-color: #000;
+            color: #fff;
+            font-family: "Jomolhari", sans-serif;
+            font-size: 20px;
+        }
+        p{
+            a{
+                color: blueviolet;
+            }
+        }
+    }
+}
+
+.bi-eye{
+    padding: 0 10px;
+}
+.bi-eye-slash{
+    display: none;
+    padding: 0 10px;
+}
+
+
