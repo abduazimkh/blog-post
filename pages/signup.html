@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jomolhari&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <title>Sign Up</title>
     <link rel="stylesheet" href="../style/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    
     <script src="../script/signup.js" defer></script>
 </head>
 <body>
@@ -14,18 +23,27 @@
         <form id="form">
             <img src="../images/logo.svg" alt="logo">
             <h1>Sign Up</h1>
-            <input id="firstName" type="text" placeholder="Fristname">
-            <input id="lastName" type="text" placeholder="Lastname">
-            <input id="email" type="text" placeholder="Email">
+            <p data-main-message></p>
+
+            <input required  autocomplete="off" id="firstname" type="text" placeholder="Fristname">
+            <p data-message-firstname></p>
+
+            <input required  autocomplete="off" id="lastname" type="text" placeholder="Lastname">
+            <p data-message-lastname></p>
+
+            <input  autocomplete="off" id="email" type="text" placeholder="Your email">
+            <p data-message-email></p>
+
             <div class="inp-div">
-                <input id="btn-password" type="password" placeholder="Password">
+                <input  autocomplete="off" id="password" type="password" placeholder="Your password">
                 <i class="bi bi-eye"></i>
                 <i class="bi bi-eye-slash"></i>
             </div>
+            <p data-message-password></p>
 
-            <p>If you have an account? <a href="./login.html">Sign Up.</a></p>
+            <p>If you have an account? <a href="./login.html">Log In.</a></p>
 
-            <button class="btn" type="submit">Log In</button>
+            <button class="btn" type="submit">Sign Up </button>
         </form>
     </div>
 
