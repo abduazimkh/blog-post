@@ -7,6 +7,7 @@ fetch(`http://localhost:3000/api/posts/${postUrlId}`)
     fetch(`http://localhost:3000/api/categories`)
     .then(res => res.json())
     .then(data => {
+        console.log(data);
         a.push(data.data[2].slug)
         localStorage.setItem("category", a)
     })
