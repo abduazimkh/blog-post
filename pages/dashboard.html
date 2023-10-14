@@ -1,42 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Jomolhari&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../style/main.min.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
-      defer
-    ></script>
+    <link rel="stylesheet" href="../style/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <script src="../script/dashboard.js" defer></script>
-  </head>
-  
-  <body>
+    <link rel="stylesheet" href="../style/dashboard.css">
+</head>
+<body>
 
 
+  <div class="dashboard-wrapper">
+    <aside>
+      <h1>Dashboard</h1>
+
+      <div class="sidebar__profile">
+        <img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"alt="profil img"/>
+
+        <div class="profile__info">
+        </div>
+      </div>
+
+      <ul class="sidebar__menu">
+        <li class="menu__item "><a class="item1" href="./dashboard.html?page=create">Create Post</a></li>
+        <li class="menu__item "><a class="item2" href="./dashboard.html?page=manage">Manage Posts</a></li>
+      </ul>
+
+      <button class="sidebar__signout">Sign Out?</button>
+    </aside>
+
+    <main>
+
+      <div data-content-name="create" id="create-content" class="create-content">
+        <h2 class="content-text">Create Post</h2>
+
+        <form id="create-form">
+          <label for="">Post title</label>
+          <input id="create-title" type="text">
+
+          <label for="">Post image</label>
+          <ul>
+            <input id="url-image" type="text">
+            <select name="" id="create-select">
+              <option disabled selected value="">select post category</option>
+            </select>
+          </ul>
+
+          <label for="">Post description</label>
+          <textarea name="" id="create-textarea" cols="20" rows="10"></textarea>
+
+          <button type="submit" class="button">Create Post</button>
+
+        </form>
+
+            <div class="popap-item">
+              <h3>Log Out</h3>
+              <p>Are you sure log out?</p>
+              
+              <button class="signout-btn">Sign Out</button>
+          </div>
+
+      </div>
+
+      <div data-content-name="manage"  class="all-content">
+        <h2 class="content-text">Manage Posts</h2>
+        <div id="all-content" class="all-content__grid"></div>
+        <div class="modal-delete-wrapper">
+          <div class="modal-delete">
+            <button id="modal-delete-close" class="fas fa-times"></button>
+
+            <h2 style="font-size: 24px; margin-bottom: 15px;">Delete Post </h2>
+            <p>Are you sure to delete this Post? </p>
+            <button class="modal-delete-btn">Delete</button>
+          </div>
+          <div class="modal-edit">
+            <button id="modal-edit-close" class="fas fa-times"></button>
+            <h2 style=" color: #000;font-size: 24px; margin-bottom: 15px;">Update Post</h2>
+            <form id="edit-form">
+              <label>Post title
+                <br>
+                <input id="post-title" type="text">
+              </label>
+              <select name="" id="edit-select">
+                <option selected disabled value="">Select post category</option>
+              </select>
+              <label for="">Post image
+                <br>
+                <input id="image-link" type="text">
+              </label>
+              <label for="">Post description
+                <br>
+                <textarea name="" id="edit-textarea" cols="30" rows="10"></textarea>
+              </label>
+            </form>
+            <button class="modal-edit-btn" type="submit">Create Post</button>
+          </div>
+
+        </div>
+      </div>
       
+    </main>
+  </div>
 
 
-
-  </body>
+    
+</body>
 </html>
