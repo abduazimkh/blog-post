@@ -14,13 +14,11 @@ const $modalEdit = document.querySelector(".modal-edit");
 const $modalEditClose = document.querySelector("#modal-edit-close");
 const $modalEditBtn = document.querySelector(".modal-edit-btn");
 
-
 const $profilInfo = document.querySelector(".profile__info");
 
 fetch(`http://localhost:3000/api/users/${userId}`)
   .then((res) => res.json())
   .then((data) => {
-
     $profilInfo.innerHTML = `
         <strong >${data.data.fullname}</strong>
         <small>Author</small>
@@ -55,8 +53,15 @@ function renderAllRealEstatedata(data) {
     const $realEstateCardItem = document.createElement("div");
     $realEstateCardItem.classList = "real-estate__card-item";
     $realEstateCardItem.innerHTML = `
-        <img src="${realestate.image}"  alt="${realestate.description.slice(0,10)}"/>
-        <h3 class="card-h3">${realestate.title.length>=30 ? realestate.title.slice(0, 30) : realestate.title+"..." }</h3>
+        <img src="${realestate.image}"  alt="${realestate.description.slice(
+      0,
+      10
+    )}"/>
+        <h3 class="card-h3">${
+          realestate.title.length >= 30
+            ? realestate.title.slice(0, 30)
+            : realestate.title + "..."
+        }</h3>
         <p style="margin:10px;" class="card-p">${realestate.description.slice(
           0,
           130
@@ -95,7 +100,6 @@ $allContent.addEventListener("click", (e) => {
       e.target.dataset.realestateId
     );
   }
-  
 });
 
 $modalDleteBtn.addEventListener("click", (e) => {
@@ -126,139 +130,146 @@ $modalDeleteClose.addEventListener("click", (e) => {
   $modalDelete.classList.remove("modal-delete-active");
 });
 
-
-
 const editPostTitle = document.querySelector("#post-title");
 const editSelect = document.querySelector("#edit-select");
 const editImage = document.querySelector("#image-link");
 const editTextarea = document.querySelector("#edit-textarea");
 
-
 fetch(`http://localhost:3000/api/categories`)
-.then(res => res.json())
-.then(data => {
-    const selectFragment = document.createDocumentFragment()
-    data.data.forEach(el => {
-        // console.log(el);
-        const option = document.createElement("option")
-        option.innerHTML = el.title
-        selectFragment.appendChild(option)
-    })
-    editSelect.appendChild(selectFragment)
-})
+  .then((res) => res.json())
+  .then((data) => {
+    const selectFragment = document.createDocumentFragment();
+    data.data.forEach((el) => {
+      // console.log(el);
+      const option = document.createElement("option");
+      option.innerHTML = el.title;
+      selectFragment.appendChild(option);
+    });
+    editSelect.appendChild(selectFragment);
+  });
 
 $modalEditBtn.addEventListener("click", (e) => {
   const editItemId = e.target.dataset.realestateId;
-
-    // editForm.addEventListener('submit', (e) => {
-            fetch(`http://localhost:3000/api/posts/`+editItemId, {
-                method: "PUT",
-                body: JSON.stringify({
-                    title: editPostTitle.value,
-                    image: editImage.value,
-                    description: editTextarea.value,
-                    category: editSelect.value,
-                    author: userId
-                }),
-                headers: {
-                    "Content-type": "application/json",
-                    Authorization: "Bearer " + localStorage.getItem("login-token"),
-
-                }
-            }).then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data) {
-                    $modalDeleteWrapper.classList.remove("modal-edit-wrapper-active");
-                    $modalDelete.classList.remove("modal-edit-active");
-                    fetchData("/listing/get");
-                  }
-                  location.replace(location.origin + "/pages/dashboard.html?page=manage");
-            })
-        // }/)
-})
+  console.log(editItemId);
+  // editForm.addEventListener('submit', (e) => {
+  fetch(`http://localhost:3000/api/posts/` + editItemId, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: editPostTitle.value,
+      image: editImage.value,
+      description: editTextarea.value,
+      category: editSelect.value,
+      author: userId,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("login-token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if (data) {
+        $modalDeleteWrapper.classList.remove("modal-edit-wrapper-active");
+        $modalDelete.classList.remove("modal-edit-active");
+        fetchData("/listing/get");
+      }
+      // location.replace(location.origin + "/pages/dashboard.html?page=manage");
+    });
+  // }/)
+});
 
 $modalEditClose.addEventListener("click", (e) => {
-    $modalDeleteWrapper.classList.remove("modal-delete-wrapper-active");
-    $modalEdit.classList.remove("modal-edit-active");
-  });
+  $modalDeleteWrapper.classList.remove("modal-delete-wrapper-active");
+  $modalEdit.classList.remove("modal-edit-active");
+});
 
 
-const signoutbtn = document.querySelector(".signout-btn")
-const signoutDiv = document.querySelector(".popap-item")
-// log out
-const signout = document.querySelector(".sidebar__signout");
-signout.addEventListener("click", (e) => {
-    if(e.target){
-        signoutDiv.style="display:flex"
-        signoutbtn.addEventListener("click", (e) => {
-            localStorage.removeItem("login-token")
-            location.replace(location.origin + "/index.html");
-        })
-    }
+const bbtn = document.querySelector(".sidebar__signout");
+const signoutbtn = document.querySelector(".signout-btn");
+bbtn.addEventListener("click", (e) => {
+
+  if(true){
+    localStorage.removeItem("login-token")
+    location.pathname = "/index.html";
+  }
+
 })
+
+
+
+// const signoutDiv = document.querySelector(".popap-item");
+// // log out
+// const signout = document.querySelector(".sidebar__signout");
+// // signout.addEventListener("click", (e) => {
+//   // if (e.target) {
+//     // signoutDiv.style = "display:flex";
+//     signoutbtn.addEventListener("click", (e) => {
+//       console.log('hello');
+
+//       localStorage.removeItem("login-token");
+//       location.replace(location.origin + "/index.html");
+//     });
+  // }
+// });
+
 
 
 fetch(`http://localhost:3000/api/categories`)
-.then(res => res.json())
-.then(data => {
-    const selectFragment = document.createDocumentFragment()
-    data.data.forEach(el => {
-        // console.log(el);
-        const option = document.createElement("option")
-        option.innerHTML = el._id
-        selectFragment.appendChild(option)
-    })
-    createSelect.appendChild(selectFragment)
-})
+  .then((res) => res.json())
+  .then((data) => {
+    const selectFragment = document.createDocumentFragment();
+    data.data.forEach((el) => {
+      // console.log(el);
+      const option = document.createElement("option");
+      option.innerHTML = el._id;
+      selectFragment.appendChild(option);
+    });
+    createSelect.appendChild(selectFragment);
+  });
 
-const createForm = document.querySelector("#create-form")
+const createForm = document.querySelector("#create-form");
 const createPostTitle = document.querySelector("#create-title");
 const createSelect = document.querySelector("#create-select");
 const createImage = document.querySelector("#url-image");
 const createTextarea = document.querySelector("#create-textarea");
 
-
-
 createForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-      // editForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // editForm.addEventListener('submit', (e) => {
 
-    fetch(`http://localhost:3000/api/posts`, {
-        method: "POST",
-        body: JSON.stringify({
-            title: createPostTitle.value,
-            image: createImage.value,
-            description: createTextarea.value,
-            category: createSelect.value,
-            // author: userId   
-        }),
-        headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("login-token"),
-        }
-    }).then(res => console.log(res))
-    // .then(data => {
-    //     console.log(data);
-    //     if (data) {
-    //         $modalDeleteWrapper.classList.remove("modal-edit-wrapper-active");
-    //         $modalDelete.classList.remove("modal-edit-active");
-    //         fetchData("/listing/get");
-    //         location.replace(location.origin + "/pages/dashboard.html?page=create");
-    //       }
-    // })
+  fetch(`http://localhost:3000/api/posts`, {
+    method: "POST",
+    body: JSON.stringify({
+      title: createPostTitle.value,
+      image: createImage.value,
+      description: createTextarea.value,
+      category: createSelect.value,
+      // author: userId
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("login-token"),
+    },
+  }).then((res) => console.log(res));
+  // .then(data => {
+  //     console.log(data);
+  //     if (data) {
+  //         $modalDeleteWrapper.classList.remove("modal-edit-wrapper-active");
+  //         $modalDelete.classList.remove("modal-edit-active");
+  //         fetchData("/listing/get");
+  //         location.replace(location.origin + "/pages/dashboard.html?page=create");
+  //       }
+  // })
 
-createPostTitle.value = "";
-createImage.value = "";
-createTextarea.value = "";
-createSelect.value = "";
-
-})
-
-
+  createPostTitle.value = "";
+  createImage.value = "";
+  createTextarea.value = "";
+  createSelect.value = "";
+});
 
 switch (currentPage) {
-    case "manage":
-      fetchData("/posts");
-      break;
-  }
+  case "manage":
+    fetchData("/posts");
+    break;
+}
