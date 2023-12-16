@@ -1,3 +1,1 @@
-# 3-month-exam
-
 
